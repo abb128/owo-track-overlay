@@ -1,0 +1,28 @@
+#include "res://includes/consts.gdml"
+#include "res://components/alias_include.gdml"
+
+<resource src="res://components/styles/button_rounded/normal.tres"   id="normal_style" />
+<resource src="res://components/styles/button_rounded/hovering.tres" id="hovering_style" />
+<resource src="res://components/styles/button_rounded/pressed.tres"  id="pressed_style" />
+
+<resource src="res://components/styles/button_rounded/font_button.tres"  id="font" />
+
+<MarginContainer disabled="@{false}" text="Default Text" g-id="main" >
+	<Button text="${main.text.to_upper()}" g-override-font-font="#font" disabled="${main.disabled}">
+		<script src="res://components/core/sbutton.gd"
+			TRANSITION_SPEED="@{TRANSITION_SPEED_V}"
+			normal_style="#normal_style"
+			hovering_style="#hovering_style"
+			pressed_style="#pressed_style"
+		/>
+	</Button>
+</MarginContainer>
+
+
+
+
+
+
+
+
+

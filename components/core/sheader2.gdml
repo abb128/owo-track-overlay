@@ -1,0 +1,5 @@
+#include "res://components/alias_include.gdml"
+
+<resource src="res://components/styles/font_header2.tres" id="FONT_HEADER" />
+
+<SLabel align="@{ALIGN_CENTER}" g-override-font-font="#FONT_HEADER" self_modulate="@{Color(1.2, 1.2, 1.2)}" />

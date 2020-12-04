@@ -1,0 +1,19 @@
+<MarginContainer rotation="@{Vector3(0, 0, 0)}" calibrating="@{false}" device_id="@{1}" device_name="Unknown" g-id="main">
+	<VBoxContainer>
+		<Label text="${main.device_name + ' (' + str(main.calibrating) + ')'}" />
+		<Label text="${main.device_name + ' (' + str(main.calibrating) + ')'}" />
+		<Label text="${main.device_name + ' (' + str(main.device_id) + ')'}" />
+		<Label text="${main.device_name + ' (' + str(main.device_id) + ')'}" />
+		<HBoxContainer>
+			<CheckBox g-bind="${main.calibrating}" />
+			<LineEdit g-bind="${main.device_name}" />
+			<SpinBox g-bind="${main.device_id}" />
+			<Button text="Toggle" g-id="calib" />
+		</HBoxContainer>
+		<ViewportContainer>
+			<Viewport size="Vector2(128, 128)">
+				<CSGBox rotation="${main.rotation}" />
+			</Viewport>
+		</ViewportContainer>
+	</VBoxContainer>
+</MarginContainer>

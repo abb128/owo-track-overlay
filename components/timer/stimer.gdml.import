@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/stimer.gdml-c1806c4fc849ad3bae697a8c8fd82332.scn"
+
+[deps]
+
+source_file="res://components/timer/stimer.gdml"
+dest_files=[ "res://.import/stimer.gdml-c1806c4fc849ad3bae697a8c8fd82332.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

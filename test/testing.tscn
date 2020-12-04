@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://imgs/calibrate(1).webm" type="VideoStream" id=1]
+[ext_resource path="res://components/looping_video.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var OVRInterface = OpenVRInterface.new();
+	
+	var path = OVRInterface.get_runtime_path() + \"\\\\bin\\\\win64\"	;
+	
+	print(path);
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="Node" type="Control"]
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_right = 320.0
+margin_bottom = 320.0
+stream = ExtResource( 1 )
+autoplay = true
+expand = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

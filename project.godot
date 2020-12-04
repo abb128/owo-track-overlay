@@ -1,0 +1,134 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "GDMLCompiler",
+"language": "GDScript",
+"path": "res://addons/GDML/Importer/GDMLCompiler.gd"
+}, {
+"base": "Reference",
+"class": "GDMLDependencyManager",
+"language": "GDScript",
+"path": "res://addons/GDML/Importer/GDMLDependencyManager.gd"
+}, {
+"base": "Reference",
+"class": "GDMLLoader",
+"language": "GDScript",
+"path": "res://addons/GDML/Importer/GDMLLoader.gd"
+}, {
+"base": "Resource",
+"class": "GDMLPreProcessor",
+"language": "GDScript",
+"path": "res://addons/GDML/Importer/GDMLPreProcessor.gd"
+}, {
+"base": "Node",
+"class": "GDMLReactiveDatablock",
+"language": "GDScript",
+"path": "res://addons/GDML/Resources/GDMLReactiveDatablock.gd"
+}, {
+"base": "Node",
+"class": "GDMLReactiveProperty",
+"language": "GDScript",
+"path": "res://addons/GDML/Resources/GDMLReactiveProperty.gd"
+}, {
+"base": "GDMLReactiveDatablock",
+"class": "GDMLScene",
+"language": "GDScript",
+"path": "res://addons/GDML/Resources/GDMLScene.gd"
+}, {
+"base": "Node",
+"class": "GDMLSignalConnector",
+"language": "GDScript",
+"path": "res://addons/GDML/Resources/GDMLSignalConnector.gd"
+}, {
+"base": "Reference",
+"class": "GDMLStaticExpressionParser",
+"language": "GDScript",
+"path": "res://addons/GDML/Importer/GDMLStaticExpressionParser.gd"
+}, {
+"base": "EditorImportPlugin",
+"class": "ImportGDMLPlugin",
+"language": "GDScript",
+"path": "res://addons/GDML/Importer/ImportGDMLPlugin.gd"
+}, {
+"base": "Control",
+"class": "NodeGDML",
+"language": "GDScript",
+"path": "res://addons/GDML/NodeGDML.gd"
+}, {
+"base": "Reference",
+"class": "OpenVRInterface",
+"language": "NativeScript",
+"path": "res://GDN_bin/OpenVRInterface.gdns"
+}, {
+"base": "",
+"class": "OpenVROverlay",
+"language": "NativeScript",
+"path": "res://GDN_bin/OpenVROverlay.gdns"
+}, {
+"base": "Object",
+"class": "StringUtils",
+"language": "GDScript",
+"path": "res://addons/StringUtils.gd"
+}, {
+"base": "",
+"class": "TrackedDevice",
+"language": "NativeScript",
+"path": "res://GDN_bin/TrackedDevice.gdns"
+} ]
+_global_script_class_icons={
+"GDMLCompiler": "",
+"GDMLDependencyManager": "",
+"GDMLLoader": "",
+"GDMLPreProcessor": "",
+"GDMLReactiveDatablock": "",
+"GDMLReactiveProperty": "",
+"GDMLScene": "",
+"GDMLSignalConnector": "",
+"GDMLStaticExpressionParser": "",
+"ImportGDMLPlugin": "",
+"NodeGDML": "",
+"OpenVRInterface": "",
+"OpenVROverlay": "",
+"StringUtils": "",
+"TrackedDevice": ""
+}
+
+[application]
+
+config/name="owo-track-overlay"
+run/main_scene="res://GDN_bin/Spatial.tscn"
+run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=10000
+config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=90
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
+window/vsync/use_vsync=false
+window/energy_saving/keep_screen_on=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "GDML" )
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"

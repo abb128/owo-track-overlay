@@ -1,0 +1,26 @@
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+
+
+# stuff
+GDN/Release
+GDN/x64
+GDN/.vs
+# custom godot engine build with some optimizations
+# (disabled 3d, disabled some modules, replaced one line in can_draw os_windows.cpp
+# to fix minimized rendering issue)
+godot.windows.opt.64.exe
+no-webm.exe
+godot.windows.opt.64.exe
+*.exe
+*.iobj
+*.ipdb
+*.pdb

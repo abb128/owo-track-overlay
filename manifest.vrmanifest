@@ -1,0 +1,16 @@
+{
+	"source" : "builtin",
+	"applications": [{
+		"app_key": "abb.owoTrackOverlay",
+		"launch_type": "binary",
+		"binary_path_windows": "owoTrackOverlay.exe",
+		"is_dashboard_overlay": true,
+
+		"strings": {
+			"en_us": {
+				"name": "owoTrackOverlay",
+				"description": "owoTrackOverlay"
+			}
+		}
+	}]
+}

@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/slabel.gdml-ff7fd49424035e0de5b5bdea92e622f5.scn"
+
+[deps]
+
+source_file="res://components/core/slabel.gdml"
+dest_files=[ "res://.import/slabel.gdml-ff7fd49424035e0de5b5bdea92e622f5.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

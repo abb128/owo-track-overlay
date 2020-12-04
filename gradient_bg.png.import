@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/gradient_bg.png-3f90c4e19f345fba6db6e00a14f60728.s3tc.stex"
+path.etc="res://.import/gradient_bg.png-3f90c4e19f345fba6db6e00a14f60728.etc.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://gradient_bg.png"
+dest_files=[ "res://.import/gradient_bg.png-3f90c4e19f345fba6db6e00a14f60728.s3tc.stex", "res://.import/gradient_bg.png-3f90c4e19f345fba6db6e00a14f60728.etc.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.2
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
