@@ -28,6 +28,7 @@ TODO: scene scripts <GDScript>extends blah blah</GDScript>
 	device_id="@{1}"
 	device_name="Unknown"
 	is_installed="@{false}"
+	tracker_found="@{false}"
 	is_installing="@{false}"
 	install_result="None"
 	install_success="@{false}"
@@ -64,14 +65,22 @@ TODO: scene scripts <GDScript>extends blah blah</GDScript>
 				
 				should_predict="${main.shouldPredict}"
 			/> 
-		</Node> 
-		<VBoxContainer visible="${!main.is_installed && !main.is_installing}">
+		</Node>
+		<SButton text="Uninstall driver" g-id="uninstall_btn" visible="${main.is_installed}" />
+
+		<VBoxContainer visible="${!main.is_installed && !main.tracker_found && !main.is_installing}">
 			<SHeader text="APPLICATION_NAME Installer" />
-			<SLabel text="The APPLICATION_NAME_SHORT driver device was not found. This is likely because SteamVR hasn't loaded the driver, or the driver is not installed." />
-			<SLabel text="It's also possible that the device has not yet been created, and it may be created in a few seconds." />
+			<SLabel text="The APPLICATION_NAME_SHORT driver was not found in vrpathreg.exe's installed drivers list." />
 			<SLabel text="You may install the driver by clicking the button below, then restarting SteamVR." />
 			<SButton text="Install APPLICATION_NAME_SHORT driver" g-id="install_btn" />
 		</VBoxContainer> 
+		 
+		<VBoxContainer visible="${main.is_installed && !main.tracker_found && !main.is_installing}">
+			<SHeader text="APPLICATION_NAME (waiting)" />		
+			<SLabel text="Due to some issues with SteamVR being big dumb and making a tracker steal controller input, you must start your controllers before the tracker can initialize. Please connect both your left and right controllers to move onto the next step." />
+		</VBoxContainer>
+
+		
 		<VBoxContainer visible="${main.is_installing}">
 			<SHeader text="APPLICATION_NAME Installer" />		
 			<SLabel text="The (un)installation attempt has completed." visible="${main.install_success}" />
@@ -79,11 +88,10 @@ TODO: scene scripts <GDScript>extends blah blah</GDScript>
 			<SLabel text="You should now restart SteamVR." visible="${main.install_success}"/>
 		</VBoxContainer>
 		
-		<VBoxContainer visible="${main.is_installed && (!main.is_installing)}">
+		<VBoxContainer visible="${main.tracker_found && (!main.is_installing)}">
 			<VBoxContainer visible="${main.calibrating == 0}">
 				<SHeader text="APPLICATION_NAME" />
 				<SLabel text="${main.connection}" />
-				<SButton text="Uninstall driver" g-id="uninstall_btn" />
 				
 				<SHeader2 text="Device Data" />
 				<GridContainer columns="@{2}">

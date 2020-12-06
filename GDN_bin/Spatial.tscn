@@ -95,19 +95,20 @@ margin_top = 32.0
 margin_right = 1184.0
 margin_bottom = 624.0
 __nodeDependencies = {
-"calibrating": [ NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer3/ReactiveProperty") ],
-"connection": [ NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/Label2/ReactiveProperty") ],
+"calibrating": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer3/ReactiveProperty") ],
+"connection": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/Label2/ReactiveProperty") ],
 "device_id": [ NodePath("VBoxContainer2/Node/ReactiveProperty") ],
 "finished_loading": [ NodePath("VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/ReactiveProperty") ],
-"install_result": [ NodePath("VBoxContainer/Label5/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer2/Label3/ReactiveProperty") ],
-"install_success": [ NodePath("VBoxContainer2/VBoxContainer2/Label2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer2/Label4/ReactiveProperty") ],
-"is_alive": [ NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/GridContainer/Label2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/GridContainer/Label3/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/Label5/ReactiveProperty") ],
-"is_calibrated": [ NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/VBoxContainer/Label/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/VBoxContainer/Label2/ReactiveProperty") ],
-"is_installed": [ NodePath("VBoxContainer2/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/ReactiveProperty") ],
-"is_installing": [ NodePath("VBoxContainer2/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/ReactiveProperty") ],
+"install_result": [ NodePath("VBoxContainer/Label5/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/Label3/ReactiveProperty") ],
+"install_success": [ NodePath("VBoxContainer2/VBoxContainer3/Label2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/Label4/ReactiveProperty") ],
+"is_alive": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/GridContainer/Label2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/GridContainer/Label3/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/Label5/ReactiveProperty") ],
+"is_calibrated": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/VBoxContainer/Label/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/VBoxContainer/Label2/ReactiveProperty") ],
+"is_installed": [ NodePath("VBoxContainer2/MarginContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer2/ReactiveProperty") ],
+"is_installing": [ NodePath("VBoxContainer2/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer3/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/ReactiveProperty") ],
 "retries": [ NodePath("VBoxContainer/ReactiveProperty") ],
-"shouldPredict": [ NodePath("VBoxContainer2/Node/ReactiveProperty2"), NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer/GridContainer/CheckBox/ReactiveProperty") ],
-"timer_running": [ NodePath("VBoxContainer2/VBoxContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/ReactiveProperty") ]
+"shouldPredict": [ NodePath("VBoxContainer2/Node/ReactiveProperty2"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/GridContainer/CheckBox/ReactiveProperty") ],
+"timer_running": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/ReactiveProperty") ],
+"tracker_found": [ NodePath("VBoxContainer2/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/ReactiveProperty") ]
 }
 __reactive_props = {
 "calibrating": 0,
@@ -123,5 +124,6 @@ __reactive_props = {
 "is_installing": false,
 "retries": 0,
 "shouldPredict": true,
-"timer_running": false
+"timer_running": false,
+"tracker_found": false
 }

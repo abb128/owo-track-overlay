@@ -128,7 +128,7 @@ func _process(delta: float) -> void:
 			initialized = true;
 			ready();
 	
-	if(!datablock.is_installed):
+	if(!datablock.tracker_found):
 		waiter += 1;
 		if(waiter > 16):
 			ready(); # recheck
@@ -163,9 +163,36 @@ func get_runtime_path(extra_path: String) -> String:
 	var OVRInterface = OpenVRInterface.new();
 	return OVRInterface.get_runtime_path() + extra_path;
 
-func generic_vrpathreg(command: String) -> void:
-	var driver_path := OS.get_executable_path().get_base_dir() + "\\driver";
+func get_driver_path() -> String:
+	return OS.get_executable_path().get_base_dir() + "\\driver";
+
+func get_runtime_exe_path(exe: String) -> String:
+	var win64_dir = get_runtime_path("\\bin\\win64");
+	var dir = Directory.new();
+	if(dir.open(win64_dir) != OK):
+		datablock.install_success = false;
+		datablock.install_result = "Failed! Could not find SteamVR runtime at " + win64_dir + ". Try manual installation.";
+		return "";
+	
+	return win64_dir + "\\" + exe + ".exe";
+
+func is_driver_installed() -> bool:
+	var output := [];
+	
+	var result := OS.execute(get_runtime_exe_path("vrpathreg"),
+		[], true, output, true);
+	
+	var driver_path = get_driver_path();
+	
+	print(get_runtime_exe_path("vrpathreg"));
+	
 	print(driver_path);
+	print(str(output));
+	
+	return (driver_path in str(output));
+
+func generic_vrpathreg(command: String) -> void:
+	var driver_path := get_driver_path();
 	datablock.is_installing = true;
 	
 	datablock.install_success = true;
@@ -178,15 +205,10 @@ func generic_vrpathreg(command: String) -> void:
 	
 	
 	
-	var win64_dir = get_runtime_path("\\bin\\win64");
-	dir = Directory.new(); #is this needed?
-	if(dir.open(win64_dir) != OK):
-		datablock.install_success = false;
-		datablock.install_result = "Failed! Could not find SteamVR runtime at " + win64_dir + ". Try manual installation.";
-		return;
+
 	
 	var output = [];
-	var result = OS.execute(win64_dir + "\\vrpathreg.exe",
+	var result = OS.execute(get_runtime_exe_path("vrpathreg"),
 		[command, driver_path], true, output, true)
 	
 	if(result == 0):
@@ -235,7 +257,13 @@ func make_connections():
 	calib_start.get_child(0).connect("pressed", self, "start_timer");
 	
 
+var install_check_tries: int = 0;
+
 func ready():
+	if((!datablock.is_installed) && (install_check_tries < 5)):
+		datablock.is_installed = is_driver_installed();
+		install_check_tries += 1;
+	
 	var found = false;
 	device = TrackedDevice.new();
 	
@@ -250,7 +278,7 @@ func ready():
 		if("VIRT" in d_name):
 			found = true;
 			break;
-	datablock.is_installed = found;
+	datablock.tracker_found = found;
 	datablock.finished_loading = true;
 	if(!found):
 		return;
