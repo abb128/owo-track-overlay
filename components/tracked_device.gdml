@@ -1,7 +1,7 @@
 #include "res://includes/consts.gdml"
 #include "res://components/alias_include.gdml"
  
-<resource src="res://imgs/how-to-calibrate.png" id="calib_tutorial" />
+<resource src="res://imgs/phone-graphic-2.png" id="calib_tutorial" />
 <resource src="res://imgs/calibrate.webm" id="compass_video" />
 
 
@@ -65,8 +65,8 @@ TODO: scene scripts <GDScript>extends blah blah</GDScript>
 				
 				should_predict="${main.shouldPredict}"
 			/> 
-		</Node>
-		<SButton text="Uninstall driver" g-id="uninstall_btn" visible="${main.is_installed}" />
+		</Node> 
+		<SButton text="Uninstall driver" g-id="uninstall_btn" visible="${main.is_installed && (main.calibrating == 0)}" />
 
 		<VBoxContainer visible="${!main.is_installed && !main.tracker_found && !main.is_installing}">
 			<SHeader text="APPLICATION_NAME Installer" />
@@ -135,8 +135,8 @@ TODO: scene scripts <GDScript>extends blah blah</GDScript>
 				<HBoxContainer>
 					<TextureRect texture="#calib_tutorial" />
 					<VBoxContainer size_flags_horizontal="@{SIZE_EXPAND_FILL}">
-						<SLabel text="At the center of your playspace, you will now see the floating tracker, and the black strip is at the front of it. This should line up with the top of your phone (see picture)"/>
-						<SLabel text="You MUST point your phone forward, or place it on a level surface like a table. Do NOT point your phone up or down!!!!"/>
+						<SLabel text="You will now probably see a tracker in front of you. While the timer is running, simply point the phone forward in the same orientation as your head (see picture)."/>
+						<SLabel text="You MUST point your phone forward. Do NOT point your phone up or down!!!!"/>
 						<SLabel text="You will have 5 seconds to make sure your phone is oriented correctly, and the calibration will be complete."/>
 						<HBoxContainer>
 							<STimer g-id="timer" />

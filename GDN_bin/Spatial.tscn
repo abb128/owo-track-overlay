@@ -95,7 +95,7 @@ margin_top = 32.0
 margin_right = 1184.0
 margin_bottom = 624.0
 __nodeDependencies = {
-"calibrating": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer3/ReactiveProperty") ],
+"calibrating": [ NodePath("VBoxContainer2/MarginContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer2/ReactiveProperty"), NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer3/ReactiveProperty") ],
 "connection": [ NodePath("VBoxContainer2/VBoxContainer4/VBoxContainer/Label2/ReactiveProperty") ],
 "device_id": [ NodePath("VBoxContainer2/Node/ReactiveProperty") ],
 "finished_loading": [ NodePath("VBoxContainer/ReactiveProperty"), NodePath("VBoxContainer2/ReactiveProperty") ],
