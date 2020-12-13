@@ -28,3 +28,4 @@ godot.windows.opt.64.exe
 *.exp
 *.lib
 *.obj
+*.so
