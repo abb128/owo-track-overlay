@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/driver_version_mismatch.gdml-4f1e8414961b04255c3a62672f48286e.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/errors/driver_version_mismatch.gdml"
+dest_files=[ "res://.import/driver_version_mismatch.gdml-4f1e8414961b04255c3a62672f48286e.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

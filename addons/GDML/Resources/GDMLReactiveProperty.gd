@@ -69,8 +69,8 @@ func execute() -> void:
 	
 	var result = expression.execute(values_private, get_node(node));
 	if(expression.has_execute_failed()):
-		printerr("Failed executing `%s`: %s", expression_str,
-				expression.get_error_text());
+		printerr("Failed executing `%s`: %s" % [expression_str,
+				expression.get_error_text()]);
 		return;
 	
 	set_result(get_node(node), result);

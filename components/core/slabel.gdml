@@ -1,3 +1,0 @@
-#include "res://components/alias_include.gdml"
-
-<Label autowrap="@{true}" size_flags_horizontal="@{SIZE_EXPAND_FILL}"/>

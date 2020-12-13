@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/sheader2.gdml-25d74a4994692099d0f11eca6aa92a70.scn"
+
+[deps]
+
+source_file="res://ui/components/core/sheader2.gdml"
+dest_files=[ "res://.import/sheader2.gdml-25d74a4994692099d0f11eca6aa92a70.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

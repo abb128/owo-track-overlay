@@ -163,6 +163,8 @@ func _set_node_property(node: Node, cname: String, prop: String, val):
 		node.to = val;
 		node.do_connect();
 	elif(prop == "g-id"):
+		if(node.get_class() in node.name):
+			node.name = val;
 		if(element_IDs.has(val)):
 			printerr("Found more than 1 element with ID %s" % val);
 			return;
@@ -273,6 +275,8 @@ func _read_loop() -> int:
 		XMLParser.NODE_ELEMENT_END:
 			_handle_element(true);
 			return 0;
+	
+	print(parser.get_node_type());
 	
 	return 2;
 

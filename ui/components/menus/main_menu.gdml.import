@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/main_menu.gdml-820728c476a94e5c8a76ab5affbb68cc.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/main_menu.gdml"
+dest_files=[ "res://.import/main_menu.gdml-820728c476a94e5c8a76ab5affbb68cc.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

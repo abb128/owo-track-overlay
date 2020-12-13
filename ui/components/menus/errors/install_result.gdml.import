@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/install_result.gdml-6336bd310f807fef55192ab24914c569.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/errors/install_result.gdml"
+dest_files=[ "res://.import/install_result.gdml-6336bd310f807fef55192ab24914c569.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

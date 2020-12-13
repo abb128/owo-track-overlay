@@ -1,0 +1,10 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<MarginContainer fatal_error="" g-id="parr">
+	<VBoxContainer>
+		<SHeader text="APPLICATION_NAME fatal error" />
+		<SLabel text="A fatal error has occurred. Please see the message below." />
+		<SLabel text="${parr.fatal_error}" />
+	</VBoxContainer>
+</MarginContainer>

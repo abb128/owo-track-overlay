@@ -1,0 +1,11 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<MarginContainer>
+	<VBoxContainer>
+		<SHeader text="APPLICATION_NAME not active" />
+		<SLabel text="The driver has been reported as being installed by SteamVR, but it's not responding to requests for version data." />
+		<SLabel text="This likely means that the driver has been deactivated in SteamVR. To undo this, go to SteamVR settings, navigate to the Startup / Shutdown tab, select Manage Add-ons and make sure APPLICATION_NAME_SHORT is enabled." />
+		<SLabel text="Otherwise, if your intention was to disable this, then you may also disable this overlay by selecting Choose Startup Overlay Apps in the same menu and disabling the overlay." />
+	</VBoxContainer>
+</MarginContainer>

@@ -145,11 +145,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="IPC\owoIPCinterface.cpp" />
+    <ClCompile Include="IPC\win32ipc.cpp" />
     <ClCompile Include="openvrinterface.cpp" />
     <ClCompile Include="src\openvroverlay.cpp" />
     <ClCompile Include="src\init.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IPC\abstract_ipc.h" />
+    <ClInclude Include="IPC\logging.h" />
+    <ClInclude Include="IPC\owoIPC.h" />
+    <ClInclude Include="IPC\owoIPCinterface.h" />
+    <ClInclude Include="IPC\win32ipc.h" />
     <ClInclude Include="openvrinterface.h" />
     <ClInclude Include="openvrresources.h" />
     <ClInclude Include="src\openvroverlay.h" />

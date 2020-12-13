@@ -1,0 +1,7 @@
+<scene-alias src="res://ui/components/core/sbutton.gdml" as="SButton" />
+<scene-alias src="res://ui/components/core/slabel.gdml" as="SLabel" />
+
+<scene-alias src="res://ui/components/core/sheader.gdml" as="SHeader" />
+<scene-alias src="res://ui/components/core/sheader2.gdml" as="SHeader2" />
+
+<scene-alias src="res://ui/components/timer/stimer.gdml" as="STimer" />

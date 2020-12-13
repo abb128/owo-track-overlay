@@ -1,0 +1,47 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<VBoxContainer
+	device_idx="@{0}"
+	alive="@{false}"
+	cnxninfo="info"
+	g-id="tracker_m"
+	
+	shouldPredict="@{false}"
+	deviceSpace="@{false}"
+	
+	hipHeight="@{0.75}"
+>
+
+	<Node>
+		<script src="res://ui/components/menus/tracker_menu-controller.gd"
+			db_path="#tracker_m"
+			calibrator_path="#calibrate"
+			
+			pos_predict="${tracker_m.shouldPredict}"
+			device_space="${tracker_m.deviceSpace}"
+			hip_height="${tracker_m.hipHeight}"
+			
+			recal_btn="#recal_btn"
+		/>
+	</Node>
+
+	<VBoxContainer visible="${tracker_m.alive}">
+		<SHeader text="APPLICATION_NAME" visible="${calibrate.calibrating_mode == 0}" />
+		<scene src="res://ui/components/menus/calibrate.gdml" g-id="calibrate" owo_device_id="${tracker_m.device_idx}" />
+		<VBoxContainer visible="${calibrate.calibrating_mode == 0}" >
+			<GridContainer columns="@{2}">
+				<SLabel text="Position Prediction" /><CheckBox g-bind="${tracker_m.shouldPredict}" />
+				<SLabel text="Use Device Space" /><CheckBox g-bind="${tracker_m.deviceSpace}" />
+				<SLabel text="Hip Height" /><SpinBox min_value="@{-1.5}" max_value="@{1.5}" step="@{0.05}" g-bind="${tracker_m.hipHeight}" />
+			</GridContainer>
+			<SButton text="Recalibrate" g-id="recal_btn" />
+		</VBoxContainer>
+	</VBoxContainer>
+	
+	<VBoxContainer visible="${!tracker_m.alive}">
+		<SHeader text="Connect" />
+		<SLabel text="Your phone is not connected. Please connect it." />
+		<SLabel text="${tracker_m.cnxninfo}" />
+	</VBoxContainer>
+</VBoxContainer>

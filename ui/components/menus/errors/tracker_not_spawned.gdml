@@ -1,0 +1,37 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<VBoxContainer
+	port_no="@{6969}"
+	tracker_spawned="@{false}"
+	failure="@{false}"
+	g-id="parr"
+>
+	<Node>
+		<script src="res://ui/components/menus/errors/tracker_not_spawned-controller.gd"
+			spawn_path="#spawn"
+			db_path="#parr"
+		/>
+	</Node>
+
+	<VBoxContainer visible="${!parr.failure}">
+		<SHeader text="APPLICATION_NAME trackers not spawned" />
+		<SLabel text="The tracker is not spawned. Please configure the tracker below and spawn it." />
+		<SLabel text="Please note that you should have both of your VR controllers connected, otherwise they may not work after spawning." />
+		<SLabel text="You should leave the port at default, unless you know that something is interfering with that port." />
+	
+	</VBoxContainer>
+	
+	<VBoxContainer visible="${parr.failure}">
+		<SHeader text="APPLICATION_NAME tracker spawning failure" />
+		<SLabel text="Something went wrong while spawning the tracker. You may try again, but please submit a bug report if this continues." />
+	</VBoxContainer>
+	
+	<GridContainer columns="@{2}">
+		<SLabel text="Port" />
+		<SpinBox min_value="@{1000}" max_value="@{10000}" step="@{1}" g-bind="${parr.port_no}" />
+			
+		<SLabel text="Spawn" />
+		<SButton text="Spawn" g-id="spawn" />
+	</GridContainer>
+</VBoxContainer>

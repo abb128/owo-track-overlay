@@ -1,0 +1,14 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<MarginContainer srv_version="@{0}" cli_version="@{0}" g-id="parr">
+	<VBoxContainer>
+		<SHeader text="APPLICATION_NAME version mismatch" />
+		<SLabel text="The driver is installed and running, but either the overlay or the driver is out of date." />
+		<GridContainer columns="@{2}">
+			<SLabel text="Overlay version:" /> <SLabel text="${str(parr.cli_version)}" />
+			<SLabel text="Driver version:" /> <SLabel text="${str(parr.srv_version)}" />
+		</GridContainer>
+		<SLabel text="Please ensure that everything is up-to-date." />
+	</VBoxContainer>
+</MarginContainer>

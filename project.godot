@@ -69,10 +69,20 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://GDN_bin/OpenVRInterface.gdns"
 }, {
-"base": "",
+"base": "Viewport",
 "class": "OpenVROverlay",
 "language": "NativeScript",
 "path": "res://GDN_bin/OpenVROverlay.gdns"
+}, {
+"base": "Node",
+"class": "OwoIPC",
+"language": "GDScript",
+"path": "res://src/owoIPC.gd"
+}, {
+"base": "Reference",
+"class": "OwoIPCInterface",
+"language": "NativeScript",
+"path": "res://GDN_bin/OwoIPCInterface.gdns"
 }, {
 "base": "Object",
 "class": "StringUtils",
@@ -98,6 +108,8 @@ _global_script_class_icons={
 "NodeGDML": "",
 "OpenVRInterface": "",
 "OpenVROverlay": "",
+"OwoIPC": "",
+"OwoIPCInterface": "",
 "StringUtils": "",
 "TrackedDevice": ""
 }
@@ -105,12 +117,16 @@ _global_script_class_icons={
 [application]
 
 config/name="owoTrackVR"
-run/main_scene="res://GDN_bin/Spatial.tscn"
+run/main_scene="res://assets/main_scene.tscn"
 run/low_processor_mode=true
 run/low_processor_mode_sleep_usec=10000
-boot_splash/image="res://loading.png"
-config/icon="res://owotrack.png"
-config/windows_native_icon="res://owotrack.ico"
+boot_splash/image="res://assets/imgs/loading.png"
+config/icon="res://assets/imgs/owotrack.png"
+config/windows_native_icon="res://assets/imgs/owotrack.ico"
+
+[autoload]
+
+owoIPCSingleton="*res://src/owoIPC.gd"
 
 [debug]
 

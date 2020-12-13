@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/driver_not_installed.gdml-4a131c1f8979ff5370e35629e63eac01.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/errors/driver_not_installed.gdml"
+dest_files=[ "res://.import/driver_not_installed.gdml-4a131c1f8979ff5370e35629e63eac01.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

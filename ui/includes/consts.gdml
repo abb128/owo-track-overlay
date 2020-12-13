@@ -1,0 +1,5 @@
+#define TRANSITION_SPEED_V 24.0
+
+
+#define APPLICATION_NAME owoTrackVR (very alpha)
+#define APPLICATION_NAME_SHORT owoTrack

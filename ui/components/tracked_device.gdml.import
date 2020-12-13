@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/tracked_device.gdml-7a8a14180a532ffc94530526c195907c.scn"
+
+[deps]
+
+source_file="res://ui/components/tracked_device.gdml"
+dest_files=[ "res://.import/tracked_device.gdml-7a8a14180a532ffc94530526c195907c.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

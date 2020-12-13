@@ -1,0 +1,52 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<VBoxContainer
+	driver_version_matches="@{false}"
+	driver_installed="@{false}"
+	driver_active="@{false}"
+	g-id="installer_main"
+	
+	anchor_right="@{1}"
+	
+	
+	install_result=""
+	fatal_error=""
+	
+	install_result_takeover="${installer_main.install_result.length() != 0}"
+	fatal_error_takeover="${installer_main.fatal_error.length() != 0}"
+	
+	is_current_priority="${!installer_main.driver_version_matches || !installer_main.driver_installed || !installer_main.driver_active || installer_main.fatal_error_takeover || installer_main.install_result_takeover}"
+>
+	<Node g-id="installer">
+		<script src="res://src/installer.gd"
+			db_path="#installer_main"
+		/>
+	</Node> 
+
+	<Node g-id="controller">
+		<script src="res://ui/components/menus/generic_installer-controller.gd"
+			db_path="#installer_main"
+			installer_path="#installer"
+			install_uninstall_container="#buttons_container"
+			mismatch_version_path="#mismatch_version"
+		/>
+	</Node>
+	
+	<VBoxContainer visible="${!installer_main.fatal_error_takeover}">
+		<VBoxContainer visible="${!installer_main.install_result_takeover}">
+			<scene src="res://ui/components/menus/errors/driver_not_installed.gdml" visible="${!installer_main.driver_installed}"/>
+			<scene src="res://ui/components/menus/errors/driver_installed_but_inactive.gdml" visible="${installer_main.driver_installed && !installer_main.driver_active}"/>
+			<scene src="res://ui/components/menus/errors/driver_version_mismatch.gdml" visible="${installer_main.driver_installed && installer_main.driver_active && !installer_main.driver_version_matches}" g-id="mismatch_version"/>
+			<HBoxContainer g-id="buttons_container">
+				<SButton name="install" text="Install" visible="${!installer_main.driver_installed}" />
+				<SButton name="uninstall" text="Uninstall" g-id="uninstall" visible="${installer_main.driver_installed}" />
+			</HBoxContainer>
+		</VBoxContainer>
+		
+		<scene src="res://ui/components/menus/errors/install_result.gdml" visible="${installer_main.install_result_takeover)}" result="${installer_main.install_result}" />
+	</VBoxContainer>
+	
+	<scene src="res://ui/components/menus/errors/fatal_error.gdml" visible="${installer_main.fatal_error_takeover)}" fatal_error="${installer_main.fatal_error}" />
+	
+</VBoxContainer>

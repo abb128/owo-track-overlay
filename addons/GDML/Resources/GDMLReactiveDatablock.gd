@@ -14,8 +14,23 @@ func _ready() -> void:
 	update_all();
 
 
+var reserved_keywords = [];
+func fill_reserved_keywords_if_empty() -> void:
+	if(reserved_keywords.size() > 0):
+		return;
+	
+	var property_list = ClassDB.class_get_property_list(get_class());
+	for v in property_list:
+		reserved_keywords.append(v["name"].to_lower());
+
 func force_set(property: String, value) -> void:
-	# prints("Force Set","("+name+")",property,value);
+	fill_reserved_keywords_if_empty();
+	
+	if(property in reserved_keywords):
+		print("SKIP PROPERTY ",property);
+		set(property, value);
+		return;
+	
 	__reactive_props[property] = value;
 	update_dependencies(property);
 
@@ -62,6 +77,11 @@ func _force_set_base_class_parameter_if_exists(property: String, value):
 
 
 func _set(property: String, value) -> bool:
+	
+	
+	fill_reserved_keywords_if_empty();
+	if(property in reserved_keywords):
+		return false;
 	# prints("set",property);
 	if(currently_working.has(property)):
 		return false;

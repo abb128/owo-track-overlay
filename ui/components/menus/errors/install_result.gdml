@@ -1,0 +1,10 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<MarginContainer result="" g-id="parr">
+	<VBoxContainer>
+		<SHeader text="APPLICATION_NAME install result" />
+		<SLabel text="The install/uninstall operation has completed. The result is shown below." />
+		<SLabel text="${parr.result}" />
+	</VBoxContainer>
+</MarginContainer>

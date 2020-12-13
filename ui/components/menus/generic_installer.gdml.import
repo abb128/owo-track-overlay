@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/generic_installer.gdml-69a17cdb7b6f47468dda1275366f9d50.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/generic_installer.gdml"
+dest_files=[ "res://.import/generic_installer.gdml-69a17cdb7b6f47468dda1275366f9d50.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/driver_installed_but_inactive.gdml-2760aead44d24cfc65407eba639946b4.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/errors/driver_installed_but_inactive.gdml"
+dest_files=[ "res://.import/driver_installed_but_inactive.gdml-2760aead44d24cfc65407eba639946b4.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

@@ -24,3 +24,7 @@ godot.windows.opt.64.exe
 *.iobj
 *.ipdb
 *.pdb
+*.dll
+*.exp
+*.lib
+*.obj

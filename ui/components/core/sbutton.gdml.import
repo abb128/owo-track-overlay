@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/sbutton.gdml-20cf45c77f26f291ab744fa82810dbc8.scn"
+
+[deps]
+
+source_file="res://ui/components/core/sbutton.gdml"
+dest_files=[ "res://.import/sbutton.gdml-20cf45c77f26f291ab744fa82810dbc8.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

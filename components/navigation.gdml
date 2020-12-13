@@ -1,8 +1,0 @@
-#include "res://components/alias_include.gdml"
-
-<PanelContainer>
-	<VBoxContainer>
-		<SButton text="Hello" />
-		<SButton text="There" />
-	</VBoxContainer>
-</PanelContainer>

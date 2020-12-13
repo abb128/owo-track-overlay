@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/calibrate.gdml-c6971734c968d4fbee8065e511bc35aa.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/calibrate.gdml"
+dest_files=[ "res://.import/calibrate.gdml-c6971734c968d4fbee8065e511bc35aa.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

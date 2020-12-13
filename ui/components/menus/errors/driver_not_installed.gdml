@@ -1,0 +1,10 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<MarginContainer>
+	<VBoxContainer>
+		<SHeader text="APPLICATION_NAME not installed" />
+		<SLabel text="The driver was not found in the list of installed drivers as reported by SteamVR." />
+		<SLabel text="You may install the driver by clicking the install button below, then restarting SteamVR." />
+	</VBoxContainer>
+</MarginContainer>

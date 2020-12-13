@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/alias_include.gdml-659e27903ee13d869fa66915077b4e68.scn"
+
+[deps]
+
+source_file="res://ui/components/alias_include.gdml"
+dest_files=[ "res://.import/alias_include.gdml-659e27903ee13d869fa66915077b4e68.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

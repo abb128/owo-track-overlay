@@ -1,0 +1,16 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<VBoxContainer
+	g-id="main"
+	anchor_right="@{1}"
+>
+	<scene src="res://ui/components/menus/generic_installer.gdml" g-id="installer" />
+	
+	<VBoxContainer visible="${!installer.is_current_priority}">
+		<scene src="res://ui/components/menus/errors/tracker_not_spawned.gdml" g-id="spawner" visible="${!spawner.tracker_spawned}" />
+	
+	
+		<scene src="res://ui/components/menus/tracker_menu.gdml" g-id="tracker_menu" visible="${spawner.tracker_spawned}" />
+	</VBoxContainer>
+</VBoxContainer>
