@@ -83,7 +83,7 @@ custom_constants/margin_bottom = 16
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1264.0
-margin_bottom = 704.0
+margin_bottom = 8634.0
 custom_constants/margin_right = 64
 custom_constants/margin_top = 32
 custom_constants/margin_left = 64
@@ -94,7 +94,7 @@ anchor_right = 0.0
 margin_left = 64.0
 margin_top = 32.0
 margin_right = 1184.0
-margin_bottom = 624.0
+margin_bottom = 8554.0
 __nodeDependencies = {
 
 }

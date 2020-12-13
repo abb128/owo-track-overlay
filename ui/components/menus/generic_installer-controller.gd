@@ -17,12 +17,12 @@ onready var owoIPC: OwoIPC = get_node("/root/owoIPCSingleton");
 
 func install() -> void:
 	print("Install");
-	db.install_result = ":D"
+	installer.install();
 	pass;
 
 func uninstall() -> void:
 	print("Uninstall");
-	db.install_result = "D:"
+	installer.uninstall();
 	pass;
 
 func _process(_d: float) -> void:

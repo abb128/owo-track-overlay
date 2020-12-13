@@ -25,7 +25,7 @@ onready var persistence = preload("res://src/persistence.gd").new();
 
 func complete_calibration() -> void:
 	owoIPC.set_calibrating(db.owo_device_id, false);
-	
+	yield(get_tree().create_timer(0.5), "timeout");
 	var yaw: float = yield(owoIPC.get_yaw(db.owo_device_id), "completed");
 	persistence.save_calibration_to_file(yaw);
 
