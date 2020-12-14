@@ -81,7 +81,8 @@ module_webp_enabled = "no"
 │               remote_profile.json
 │
 └───GDN_bin
-        GDN.dll```
+        GDN.dll
+```
 
 driver.vrdrivermanifest and the files in the resources folder are obtained from https://github.com/abb128/owo-track-driver/tree/main/extras
 
