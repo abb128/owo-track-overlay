@@ -46,7 +46,10 @@ func cont() -> void:
 	db.calibrating_mode = 2;
 	owoIPC.set_calibrating(db.owo_device_id, true);
 
-func setup_ipc() -> void:
+func tracker_added(idx: int, port: int) -> void:
+	if(idx != db.owo_device_id):
+		return;
+	
 	var calibration_val: float = persistence.get_calibration_from_file();
 	if(calibration_val != 0.0):
 		owoIPC.set_yaw(db.owo_device_id, calibration_val);
@@ -60,6 +63,4 @@ func _ready() -> void:
 	cont.connect("pressed", self, "cont");
 	start.connect("pressed", self, "start_timer");
 	
-	owoIPC.connect("connection_ready", self, "setup_ipc");
-	if(owoIPC.version_received):
-		setup_ipc();
+	owoIPC.connect("tracker_added", self, "tracker_added");

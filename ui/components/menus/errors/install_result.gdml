@@ -6,5 +6,6 @@
 		<SHeader text="APPLICATION_NAME install result" />
 		<SLabel text="The install/uninstall operation has completed. The result is shown below." />
 		<SLabel text="${parr.result}" />
+		<SLabel text="Please restart SteamVR." />
 	</VBoxContainer>
 </MarginContainer>
