@@ -1,0 +1,22 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+
+<VBoxContainer
+	min_value="@{0.0}"
+	max_value="@{0.0}"
+	step="@{1.0}"
+	value="@{0.0}"
+	bound_value="value"
+	g-id="ssliderparr"
+>
+	<HSlider
+		min_value="${ssliderparr.min_value}"
+		max_value="${ssliderparr.max_value}"
+		step="${ssliderparr.step}"
+		g-bind="${ssliderparr.value}" 
+		rect_min_size="@{Vector2(256, 0)}"
+		tick_count="${7}"
+		ticks_on_borders="@{true}"
+		scrollable="@{true}"/>
+	<SLabel text="${str(ssliderparr.value)}" align="@{self.ALIGN_CENTER}" />
+</VBoxContainer>

@@ -49,6 +49,8 @@ inline Variant get_var_from_setting_event(owoEventTrackerSetting& ev) {
 	case OFFSET_GLOBAL:
 	case OFFSET_LOCAL_TO_DEVICE:
 	case OFFSET_LOCAL_TO_TRACKER:
+	case OFFSET_ROT_LOCAL:
+	case OFFSET_ROT_GLOBAL:
 		return Variant(Vector3(ev.vector.x, ev.vector.y, ev.vector.z));
 	}
 }
@@ -187,6 +189,8 @@ void OwoIPCInterface::set_tracker_setting(int idx, int setting, Variant val){
 	case OFFSET_GLOBAL:
 	case OFFSET_LOCAL_TO_DEVICE:
 	case OFFSET_LOCAL_TO_TRACKER:
+	case OFFSET_ROT_GLOBAL:
+	case OFFSET_ROT_LOCAL:
 	{
 		Vector3 vec_g = (Vector3)val;
 		owoEventVector vec_owo = { vec_g.x, vec_g.y, vec_g.z };

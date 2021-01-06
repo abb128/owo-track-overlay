@@ -1,0 +1,16 @@
+[remap]
+
+importer="gdml.import"
+type="PackedScene"
+path="res://.import/tracker_settings.gdml-70725b7b8168d537537e8518a3ad72fa.scn"
+
+[deps]
+
+source_file="res://ui/components/menus/tracker_settings.gdml"
+dest_files=[ "res://.import/tracker_settings.gdml-70725b7b8168d537537e8518a3ad72fa.scn" ]
+
+[params]
+
+CustomDefines={
+"TEST": "TEST"
+}

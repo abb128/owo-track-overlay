@@ -36,6 +36,9 @@ enum owoTrackerSettingType {
 	OFFSET_LOCAL_TO_DEVICE,	# vector
 	OFFSET_LOCAL_TO_TRACKER,# vector
 
+	OFFSET_ROT_GLOBAL, # vector
+	OFFSET_ROT_LOCAL,  # vector
+	
 	YAW_VALUE,				# double_v
 
 	PREDICT_POSITION,		# bool_v
@@ -54,7 +57,7 @@ var _ipc: OwoIPCInterface = null;
 func bypass_waiting() -> void:
 	_ipc.bypass_delay();
 
-const CLIENT_VERSION = 6;
+const CLIENT_VERSION = 7;
 var SERVER_VERSION = -1;
 
 
@@ -200,4 +203,14 @@ func get_offset_local_t(device_idx: int):
 	return get_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_LOCAL_TO_TRACKER);
 func set_offset_local_t(device_idx: int, to: Vector3) -> void:
 	set_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_LOCAL_TO_TRACKER, to);
+
+func get_rot_offset_local(device_idx: int):
+	return get_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_ROT_LOCAL);
+func set_rot_offset_local(device_idx: int, to: Vector3) -> void:
+	set_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_ROT_LOCAL, to);
+
+func get_rot_offset_global(device_idx: int):
+	return get_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_ROT_GLOBAL);
+func set_rot_offset_global(device_idx: int, to: Vector3) -> void:
+	set_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_ROT_GLOBAL, to);
 

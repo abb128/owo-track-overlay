@@ -27,7 +27,7 @@ func complete_calibration() -> void:
 	owoIPC.set_calibrating(db.owo_device_id, false);
 	yield(get_tree().create_timer(0.5), "timeout");
 	var yaw: float = yield(owoIPC.get_yaw(db.owo_device_id), "completed");
-	persistence.save_calibration_to_file(yaw);
+	persistence.save_yaw_calibration_to_file(yaw);
 
 func start_timer() -> void:
 	db.timer_running = true;
@@ -41,6 +41,7 @@ func start_timer() -> void:
 
 func cancel() -> void:
 	db.calibrating_mode = 0;
+	owoIPC.set_calibrating(db.owo_device_id, false);
 
 func cont() -> void:
 	db.calibrating_mode = 2;
@@ -50,7 +51,7 @@ func tracker_added(idx: int, port: int) -> void:
 	if(idx != db.owo_device_id):
 		return;
 	
-	var calibration_val: float = persistence.get_calibration_from_file();
+	var calibration_val: float = persistence.get_yaw_calibration_from_file();
 	if(calibration_val != 0.0):
 		owoIPC.set_yaw(db.owo_device_id, calibration_val);
 		db.is_calibrated = true;

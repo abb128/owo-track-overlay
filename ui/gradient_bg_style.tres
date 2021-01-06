@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=2]
 
-[ext_resource path="res://assets/imgs/gradient_bg_round.png" type="Texture" id=1]
+[ext_resource path="res://assets/imgs/theme/gradient_bg_round.png" type="Texture" id=1]
 
 [resource]
 content_margin_left = 32.0

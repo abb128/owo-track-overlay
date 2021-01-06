@@ -18,13 +18,13 @@ func do_connect():
 	var par_c := par.get_class();
 	to_actual = get_node(to);
 	
-	if(!ClassDB.class_has_signal(par_c, from)):
-		printerr("Class %s has no signal %s??" % [par_c, from]);
-		return;
 	
 	if(!override_args):
 		par.connect(from, to_actual, fun, binds, 2);
 	else:
+		if(!ClassDB.class_has_signal(par_c, from)):
+			printerr("Class %s has no signal %s??" % [par_c, from]);
+			return;
 		var sig = ClassDB.class_get_signal(par_c, from);
 		var num_args: int = sig.get("args").size();
 		if(num_args < 6):

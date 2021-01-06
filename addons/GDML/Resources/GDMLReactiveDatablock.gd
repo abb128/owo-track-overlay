@@ -2,6 +2,11 @@ tool
 extends Node
 class_name GDMLReactiveDatablock
 
+signal value_changed(k, v);
+
+signal bound_value_changed(v);
+export var bound_value: String;
+
 export var __nodeDependencies: Dictionary;
 export var __reactive_props: Dictionary;
 
@@ -14,7 +19,7 @@ func _ready() -> void:
 	update_all();
 
 
-var reserved_keywords = [];
+var reserved_keywords = ["bound_value"];
 func fill_reserved_keywords_if_empty() -> void:
 	if(reserved_keywords.size() > 0):
 		return;
@@ -35,6 +40,10 @@ func force_set(property: String, value) -> void:
 	update_dependencies(property);
 
 func update_dependencies(prop_n: String) -> void:
+	if(prop_n == bound_value):
+		emit_signal("bound_value_changed", __reactive_props[prop_n]);
+	emit_signal("value_changed", prop_n, __reactive_props[prop_n]);
+	
 	if(!__nodeDependencies.has(prop_n)):
 		return;
 	
@@ -43,8 +52,6 @@ func update_dependencies(prop_n: String) -> void:
 			continue;
 		
 		get_node(prop).execute();
-
-		# prints("update",prop_n,prop,"new",__reactive_props[prop_n]);
 
 
 var watcher_mode: bool = false;
@@ -77,7 +84,8 @@ func _force_set_base_class_parameter_if_exists(property: String, value):
 
 
 func _set(property: String, value) -> bool:
-	
+	if(property == "bound_value"):
+		bound_value = value;
 	
 	fill_reserved_keywords_if_empty();
 	if(property in reserved_keywords):
@@ -87,6 +95,10 @@ func _set(property: String, value) -> bool:
 		return false;
 	if(__reactive_props.has(property)):
 		# print("_set called!!! " + var2str(property));
+		if((typeof(__reactive_props[property]) == typeof(value))
+				&& (__reactive_props[property] == value)):
+			return true;
+		
 		__reactive_props[property] = value;
 		_force_set_base_class_parameter_if_exists(property, value);
 		update_dependencies(property);

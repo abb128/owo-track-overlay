@@ -4,4 +4,9 @@
 <scene-alias src="res://ui/components/core/sheader.gdml" as="SHeader" />
 <scene-alias src="res://ui/components/core/sheader2.gdml" as="SHeader2" />
 
+<scene-alias src="res://ui/components/core/sslider.gdml" as="SSlider" />
+
+<scene-alias src="res://ui/components/core/svec3input.gdml" as="SVec3" />
+
+
 <scene-alias src="res://ui/components/timer/stimer.gdml" as="STimer" />

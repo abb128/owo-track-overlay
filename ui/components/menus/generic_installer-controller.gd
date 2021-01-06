@@ -33,6 +33,9 @@ func _process(_d: float) -> void:
 		mismatch_version.srv_version = owoIPC.SERVER_VERSION;
 		mismatch_version.cli_version = owoIPC.CLIENT_VERSION;
 	
+	
+	if(db.driver_active && db.driver_version_matches):
+		set_process(false);
 
 
 func initialize() -> void:

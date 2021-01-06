@@ -9,7 +9,6 @@
 	
 	anchor_right="@{1}"
 	
-	
 	install_result=""
 	fatal_error=""
 	
@@ -23,7 +22,6 @@
 			db_path="#installer_main"
 		/>
 	</Node> 
-
 	<Node g-id="controller">
 		<script src="res://ui/components/menus/generic_installer-controller.gd"
 			db_path="#installer_main"

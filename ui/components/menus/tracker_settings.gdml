@@ -1,0 +1,87 @@
+#include "res://ui/includes/consts.gdml"
+#include "res://ui/components/alias_include.gdml"
+#define OFFSET_STEP step="@{0.005}"
+#define OFFSET_STEP_B step="@{0.5}"
+
+<VBoxContainer>
+	<Node>
+		<script src="res://src/TrackerSettings.gd"
+		
+			db_path="#settings"
+			db_s_path="#simple_settings"
+			
+			hip_height="${simple_settings.hipHeight}"
+			pos_predict="${settings.shouldPredict}"
+			device_space="${simple_settings.deviceSpace}"
+			
+			tracker_offset="${settings.trackerOffset}"
+			headset_offset="${settings.headOffset}"
+			global_offset ="${settings.globalOffset}"
+			
+			global_rot_offset="${settings.globalRotOffset}"
+			local_rot_offset="${settings.localRotOffset}"
+			
+			
+			is_advanced="${simple_settings.advanced}"
+		/>
+	</Node>
+	<reactive-data g-id="settings"
+		shouldPredict="@{false}"
+		
+		trackerOffset="@{Vector3(0.0, -0.75, 0.0)}"
+		headOffset="@{Vector3(0.0, -0.045, 0.09)}"
+		globalOffset="@{Vector3(0.0, 0.0, 0.0)}"
+		
+		globalRotOffset="@{Vector3(0, 0, 0)}"
+		localRotOffset="@{Vector3(0, 0, 0)}"
+	/>
+	<reactive-data g-id="simple_settings"
+		hipHeight="@{0.7}"
+		deviceSpace="@{true}"
+		advanced="@{false}"
+	/>
+	<GridContainer columns="@{2}">
+		<SLabel text="Use Device Space" /><CheckBox g-bind="${simple_settings.deviceSpace}" />
+		<SLabel text="Advanced Settings" /><CheckBox g-bind="${simple_settings.advanced}" />
+	</GridContainer>
+	<GridContainer columns="@{2}" visible="${!simple_settings.advanced}">
+		<SLabel text="Hip Height" />
+		<SSlider min_value="@{-1.5}" max_value="@{1.5}" step="@{0.025}" value="@{0.7}" g-bind="${simple_settings.hipHeight}" />
+	</GridContainer>
+	
+
+	<ScrollContainer rect_min_size="@{Vector2(0, 256)}" visible="${simple_settings.advanced}">
+		<GridContainer size_flags_horizontal="@{self.SIZE_FILL | self.SIZE_EXPAND}" columns="@{2}">
+			<SHeader text="Advanced Settings" /><SLabel />
+			
+			<SHeader2 text="Positional Offsets (metres)" /><SLabel />
+			
+			<SLabel text="Tracker-space" />
+			<SVec3
+				g-bind="${settings.trackerOffset}" OFFSET_STEP />
+			
+			<SLabel text="Headset-space" />
+			<SVec3
+				g-bind="${settings.headOffset}" OFFSET_STEP />
+			
+			<SLabel text="Global-space (you probably shouldnt use this)" />
+			<SVec3
+				g-bind="${settings.globalOffset}" OFFSET_STEP />
+			
+			<SHeader2 text="Angular Offsets (°)" /><SLabel />
+			
+			<SLabel text="Global (not recommended)" />
+			<SVec3
+				g-bind="${settings.globalRotOffset}" OFFSET_STEP_B min_value="@{-360}" max_value="@{360}" />
+			
+			<SLabel text="Local (you should probably use this one)" />
+			<SVec3
+				g-bind="${settings.localRotOffset}" OFFSET_STEP_B min_value="@{-360}" max_value="@{360}" />
+				
+			<SHeader text="Deprecated" /><SLabel />
+				
+			<SLabel text="Position Prediction (you should use device space instead)" /><CheckBox g-bind="${settings.shouldPredict}" />
+			
+		</GridContainer>
+	</ScrollContainer>
+</VBoxContainer>

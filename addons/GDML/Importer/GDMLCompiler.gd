@@ -40,13 +40,17 @@ const BINDS_LOOKUP = {
 	"LineEdit": ["text", "text_changed"],
 	"BaseButton": ["pressed", "toggled"],
 #	"TextEdit": ["text", "text_changed"], #text_changed() does not have text parameter
-	"Range": ["value", "value_changed"]
+	"Range": ["value", "value_changed"],
+	"GDMLReactiveDatablock": ["%bound_value", "bound_value_changed"]
 }
 func _bind_element(node: Node, expression: String) -> void:
 	var class_tgt := node.get_class();
+	var scrpt_path: String = "";
+	if(node.get_script() != null):
+		scrpt_path = node.get_script().resource_path;
 	if(!BINDS_LOOKUP.has(class_tgt)):
 		for key in BINDS_LOOKUP.keys():
-			if(ClassDB.is_parent_class(class_tgt, key)):
+			if(ClassDB.is_parent_class(class_tgt, key) || key in scrpt_path):
 				class_tgt = key;
 				break;
 	
@@ -55,7 +59,12 @@ func _bind_element(node: Node, expression: String) -> void:
 		return;
 	
 	var data: Array = BINDS_LOOKUP[class_tgt];
-	_add_reactive_property(node, data[0], expression);
+	
+	var nm: String = data[0];
+	if(nm.begins_with("%")):
+		nm = node.get(nm.substr(1));
+	
+	_add_reactive_property(node, nm, expression);
 	
 	var connector := GDMLSignalConnector.new();
 	connector.from = data[1];
@@ -159,6 +168,8 @@ func _set_node_property(node: Node, cname: String, prop: String, val):
 	
 	if(cname == "script" && prop == "src"):
 		node.set_script(load(val));
+	elif(prop == "name"):
+		node.name = val;
 	elif(cname == "signal-connector" && prop == "to"):
 		node.to = val;
 		node.do_connect();

@@ -1,0 +1,29 @@
+<HBoxContainer
+	value="@{Vector3(0, 0, 0)}"
+	bound_value="value"
+	step="@{1.0}"
+	min_value="@{-10.0}"
+	max_value="@{10.0}"
+	g-id="vparr">
+
+	<Node>
+		<script src="res://ui/components/core/scripts/svector.gd"
+			inputX="#ix"
+			inputY="#iy"
+			inputZ="#iz"
+			
+			vecValue="${vparr.value}"
+			mainDB="#vparr"
+		/>
+	</Node>
+	
+	<Label text="x:" />
+	<SpinBox g-id="ix" step="${vparr.step}" min_value="${vparr.min_value}" max_value="${vparr.max_value}" />
+
+	<Label text="y:" />
+	<SpinBox g-id="iy" step="${vparr.step}" min_value="${vparr.min_value}" max_value="${vparr.max_value}" />
+
+	<Label text="z:" />
+	<SpinBox g-id="iz" step="${vparr.step}" min_value="${vparr.min_value}" max_value="${vparr.max_value}" />
+
+</HBoxContainer>

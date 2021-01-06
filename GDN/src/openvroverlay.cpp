@@ -289,6 +289,7 @@ void OpenVROverlay::consume_input() {
 			InputEventMouseMotion *ev = InputEventMouseMotion::_new();
 			last_mouse_position = Vector2(vrEvent.data.mouse.x, vrEvent.data.mouse.y) * get_size();
 			ev->set_position(last_mouse_position);
+			ev->set_global_position(last_mouse_position);
 
 
 			get_tree()->input_event(ev);
@@ -300,6 +301,7 @@ void OpenVROverlay::consume_input() {
 			InputEventMouseButton* ev = InputEventMouseButton::_new();
 			last_mouse_position = Vector2(vrEvent.data.mouse.x, vrEvent.data.mouse.y) * get_size();
 			ev->set_position(last_mouse_position);
+			ev->set_global_position(last_mouse_position);
 
 			if (vrEvent.data.mouse.button & vr::VRMouseButton_Left) {
 				ev->set_button_index(1);
@@ -321,6 +323,7 @@ void OpenVROverlay::consume_input() {
 		{
 			InputEventMouseButton* ev = InputEventMouseButton::_new();
 			ev->set_position(Vector2(vrEvent.data.mouse.x, vrEvent.data.mouse.y) * get_size());
+			ev->set_global_position(last_mouse_position);
 
 
 			if (vrEvent.data.mouse.button & vr::VRMouseButton_Left) {
@@ -331,7 +334,7 @@ void OpenVROverlay::consume_input() {
 				ev->set_button_index(3);
 			}
 
-			ev->set_button_mask(vrEvent.data.mouse.button);
+			ev->set_button_mask(0);
 
 			ev->set_pressed(false);
 
@@ -344,8 +347,6 @@ void OpenVROverlay::consume_input() {
 
 			auto x_scroll = vrEvent.data.scroll.xdelta;
 			auto y_scroll = vrEvent.data.scroll.ydelta;
-
-			Godot::print("Scrolling " + String::num_real(x_scroll) + " , " + String::num_real(y_scroll));
 
 			perform_scroll((y_scroll > 0) ? 4 : 5, abs(y_scroll));
 			perform_scroll((x_scroll > 0) ? 6 : 7, abs(x_scroll));
@@ -380,6 +381,7 @@ void OpenVROverlay::consume_input() {
 		if (is_mouse_button_pressed[i]) {
 			InputEventMouseButton* ev = InputEventMouseButton::_new();
 			ev->set_position(last_mouse_position);
+			ev->set_global_position(last_mouse_position);
 			ev->set_button_index(i);
 			ev->set_factor(0.0);
 			ev->set_pressed(false);
@@ -392,13 +394,22 @@ void OpenVROverlay::consume_input() {
 }
 
 void OpenVROverlay::perform_scroll(const uint64_t& idx, const real_t& amount){
-	InputEventMouseButton* ev = InputEventMouseButton::_new();
-	ev->set_position(last_mouse_position);
-	ev->set_button_index(idx);
-	ev->set_factor(amount);
-	ev->set_pressed(true);
-	get_tree()->input_event(ev);
-	is_mouse_button_pressed[idx] = true;
+	scroll_accumulator += amount * 2.3;
+
+	for (int i = 0; i < floor(scroll_accumulator); i++) {
+		InputEventMouseButton* ev = InputEventMouseButton::_new();
+		ev->set_position(last_mouse_position);
+		ev->set_global_position(last_mouse_position);
+		ev->set_button_index(idx);
+		ev->set_factor(1.0);
+		ev->set_pressed(true);
+		get_tree()->input_event(ev);
+		is_mouse_button_pressed[idx] = true;
+	}
+
+	if (scroll_accumulator > 1.0) {
+		scroll_accumulator = 0.0;
+	}
 }
 
 

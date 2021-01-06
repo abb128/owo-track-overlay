@@ -59,4 +59,6 @@ private:
 	vr::VROverlayHandle_t m_ulOverlayThumbnailHandle;
 
 	bool has_initialized = false;
+
+	float scroll_accumulator = 0.0;
 };

@@ -74,3 +74,6 @@ func execute() -> void:
 		return;
 	
 	set_result(get_node(node), result);
+
+func _ready():
+	execute();
