@@ -45,7 +45,11 @@ enum owoTrackerSettingType {
 	PREDICT_POSITION_STRENGTH, # double_v
 
 	IS_CALIBRATING,			# bool_v
-	IS_CONN_ALIVE			# bool_v, read only
+	IS_CONN_ALIVE,			# bool_v, read only
+	
+	CALIBRATING_DOWN,		# bool_v
+	HIP_MOVE,				# bool_v
+	HIP_MOVE_VECTOR			# vector
 }
 
 signal on_message(msg);
@@ -54,10 +58,8 @@ signal tracker_added(idx, port);
 
 var _ipc: OwoIPCInterface = null;
 
-func bypass_waiting() -> void:
-	_ipc.bypass_delay();
 
-const CLIENT_VERSION = 7;
+const CLIENT_VERSION = 8;
 var SERVER_VERSION = -1;
 
 
@@ -185,6 +187,12 @@ func get_calibrating(device_idx: int):
 func set_calibrating(device_idx: int, to: bool) -> void:
 	set_tracker_setting_async(device_idx, owoTrackerSettingType.IS_CALIBRATING, to);
 
+func get_calibrating_down(device_idx: int):
+	return get_tracker_setting_async(device_idx, owoTrackerSettingType.CALIBRATING_DOWN);
+func set_calibrating_down(device_idx: int, to: bool) -> void:
+	set_tracker_setting_async(device_idx, owoTrackerSettingType.CALIBRATING_DOWN, to);
+
+
 func is_alive(device_idx: int):
 	return get_tracker_setting_async(device_idx, owoTrackerSettingType.IS_CONN_ALIVE);
 
@@ -214,3 +222,18 @@ func get_rot_offset_global(device_idx: int):
 func set_rot_offset_global(device_idx: int, to: Vector3) -> void:
 	set_tracker_setting_async(device_idx, owoTrackerSettingType.OFFSET_ROT_GLOBAL, to);
 
+
+
+var hipmove_initialized := false;
+
+func get_hipmove(device_idx: int):
+	return get_tracker_setting_async(device_idx, owoTrackerSettingType.HIP_MOVE);
+func set_hipmove(device_idx: int, to: bool) -> void:
+	_ipc.init_hipmove();
+	set_tracker_setting_async(device_idx, owoTrackerSettingType.HIP_MOVE, to);
+
+func tick_hipmove(device_idx: int):
+	if(!hipmove_initialized):
+		_ipc.init_hipmove();
+		hipmove_initialized = true;
+	return _ipc.tick_hipmove(device_idx);

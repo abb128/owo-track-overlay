@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GDML/Importer/ImportGDMLPlugin.gd"
 }, {
+"base": "Node",
+"class": "Installer",
+"language": "GDScript",
+"path": "res://src/installer.gd"
+}, {
 "base": "Control",
 "class": "NodeGDML",
 "language": "GDScript",
@@ -89,10 +94,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/StringUtils.gd"
 }, {
-"base": "",
+"base": "Reference",
 "class": "TrackedDevice",
 "language": "NativeScript",
 "path": "res://GDN_bin/TrackedDevice.gdns"
+}, {
+"base": "Node",
+"class": "TrackerSettings",
+"language": "GDScript",
+"path": "res://src/TrackerSettings.gd"
 } ]
 _global_script_class_icons={
 "GDMLCompiler": "",
@@ -105,13 +115,15 @@ _global_script_class_icons={
 "GDMLSignalConnector": "",
 "GDMLStaticExpressionParser": "",
 "ImportGDMLPlugin": "",
+"Installer": "",
 "NodeGDML": "",
 "OpenVRInterface": "",
 "OpenVROverlay": "",
 "OwoIPC": "",
 "OwoIPCInterface": "",
 "StringUtils": "",
-"TrackedDevice": ""
+"TrackedDevice": "",
+"TrackerSettings": ""
 }
 
 [application]

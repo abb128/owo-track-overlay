@@ -1,5 +1,7 @@
 #include "owoIPCinterface.h"
 
+#include <OS.hpp>
+
 void OwoIPCInterface::_send_ev(owoEvent ev){
 	IPCData data = {};
 	data.buffer = &ev;
@@ -19,12 +21,14 @@ void OwoIPCInterface::_register_methods(){
 	reg_mtd(request_trackers_len);
 	reg_mtd(request_tracker_data);
 	reg_mtd(request_tracker_setting);
-	reg_mtd(bypass_delay);
 	reg_mtd(set_tracker_setting);
 	reg_mtd(create_tracker);
 	reg_mtd(destroy_tracker);
 
 	reg_mtd(get_latest_message);
+
+	reg_mtd(init_hipmove);
+	reg_mtd(tick_hipmove);
 }
 
 
@@ -42,15 +46,18 @@ inline Variant get_var_from_setting_event(owoEventTrackerSetting& ev) {
 		return Variant(ev.double_v);
 
 	case PREDICT_POSITION:
+	case CALIBRATING_DOWN:
 	case IS_CALIBRATING:
 	case IS_CONN_ALIVE:
+	case HIP_MOVE:
 		return Variant(ev.bool_v);
 
 	case OFFSET_GLOBAL:
 	case OFFSET_LOCAL_TO_DEVICE:
 	case OFFSET_LOCAL_TO_TRACKER:
-	case OFFSET_ROT_LOCAL:
 	case OFFSET_ROT_GLOBAL:
+	case OFFSET_ROT_LOCAL:
+	case HIP_MOVE_VECTOR:
 		return Variant(Vector3(ev.vector.x, ev.vector.y, ev.vector.z));
 	}
 }
@@ -155,13 +162,6 @@ int OwoIPCInterface::request_tracker_setting(int idx, int setting){
 	return ++incr;
 }
 
-void OwoIPCInterface::bypass_delay(){
-	owoEvent ev = {};
-	ev.type = BYPASS_DELAY;
-
-	_send_ev(ev);
-}
-
 void OwoIPCInterface::set_tracker_setting(int idx, int setting, Variant val){
 	owoEvent ev = {};
 	ev.type = SET_TRACKER_SETTING;
@@ -172,8 +172,10 @@ void OwoIPCInterface::set_tracker_setting(int idx, int setting, Variant val){
 	
 	switch (setting) {
 	case PREDICT_POSITION:
+	case CALIBRATING_DOWN:
 	case IS_CALIBRATING:
 	case IS_CONN_ALIVE:
+	case HIP_MOVE:
 		set_ev.bool_v = (bool)val;
 		break;
 
@@ -191,6 +193,7 @@ void OwoIPCInterface::set_tracker_setting(int idx, int setting, Variant val){
 	case OFFSET_LOCAL_TO_TRACKER:
 	case OFFSET_ROT_GLOBAL:
 	case OFFSET_ROT_LOCAL:
+	case HIP_MOVE_VECTOR:
 	{
 		Vector3 vec_g = (Vector3)val;
 		owoEventVector vec_owo = { vec_g.x, vec_g.y, vec_g.z };
@@ -224,4 +227,58 @@ void OwoIPCInterface::destroy_tracker(int idx){
 	ev.index = idx;
 
 	_send_ev(ev);
+}
+
+#define BUFSIZE 1024
+void OwoIPCInterface::init_hipmove(){
+	Godot::print("Initialiing..");
+
+	OS* os = OS::get_singleton();
+	auto file = os->get_executable_path().get_base_dir() + "\\hiplocomotion.json";
+
+	auto c_str = file.alloc_c_string();
+	Godot::print("Path: " + String(c_str));
+
+
+	vr::VRInput()->SetActionManifestPath(c_str);
+
+	Godot::print("action manifest");
+
+	vr::VRInput()->GetActionHandle("/actions/demo/in/AnalogInput", &m_actionAnalongInput);
+
+	Godot::print("analog handle");
+
+	vr::VRInput()->GetActionSetHandle("/actions/demo", &m_actionsetDemo);
+
+	Godot::print("exiting");
+}
+
+void OwoIPCInterface::tick_hipmove(int idx){
+
+	vr::VRActiveActionSet_t actionSet = { 0 };
+	actionSet.ulActionSet = m_actionsetDemo;
+	actionSet.nPriority = 1;
+	auto error = vr::VRInput()->UpdateActionState(&actionSet, sizeof(actionSet), 1);
+
+	if (error != vr::EVRInputError::VRInputError_None) {
+		Godot::print("Error " + String::num_int64(error));
+	}
+
+	vr::InputAnalogActionData_t analogData;
+	auto result = vr::VRInput()->GetAnalogActionData(m_actionAnalongInput, &analogData, sizeof(analogData), vr::k_ulInvalidInputValueHandle);
+	if (result != vr::VRInputError_None) {
+		Godot::print("result Error " + String::num_int64(result));
+	}
+	bool active = analogData.bActive;
+	if (active) {
+		Godot::print("Action set active");
+	}
+	if (result == vr::VRInputError_None && active)
+	{
+		Godot::print("Sending joystick data " + Vector3(analogData.x, analogData.y, analogData.z));
+		set_tracker_setting(idx, HIP_MOVE_VECTOR, Vector3(analogData.x, analogData.y, analogData.z));
+	}
+	else {
+	}
+
 }

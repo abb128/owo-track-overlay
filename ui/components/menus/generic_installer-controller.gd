@@ -4,7 +4,7 @@ export var db_path: NodePath;
 onready var db = get_node(db_path);
 
 export var installer_path: NodePath;
-onready var installer = get_node(installer_path);
+onready var installer: Installer = get_node(installer_path);
 
 export var install_uninstall_container: NodePath;
 onready var iucont = get_node(install_uninstall_container);

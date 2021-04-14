@@ -1,0 +1,22 @@
+{
+   "bindings" : {
+		"/actions/demo": {
+			"sources": [
+				{
+					"path": "/user/hand/left/input/joystick",
+					"mode": "joystick",
+					"inputs": {
+						"position": {
+							"output": "/actions/demo/in/analoginput"
+						}
+					}
+				}
+			]
+		}
+	},
+   "controller_type" : "generic",
+   "description" : "Bindings for the hip locomotion for a generic controller",
+   "name" : "Hip locomotion bindings for a generic controller"
+}
+
+

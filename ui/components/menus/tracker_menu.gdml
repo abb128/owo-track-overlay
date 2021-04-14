@@ -12,11 +12,10 @@
 			db_path="#tracker_m"
 			calibrator_path="#calibrate"
 			
-			pos_predict="${tracker_m.shouldPredict}"
-			device_space="${tracker_m.deviceSpace}"
-			hip_height="${tracker_m.hipHeight}"
+			settings_path="#settings"
 			
 			recal_btn="#recal_btn"
+			recal_btn_down="#recal_btn_down"
 		/>
 	</Node>
 
@@ -24,8 +23,11 @@
 		<SHeader text="APPLICATION_NAME" visible="${calibrate.calibrating_mode == 0}" />
 		<scene src="res://ui/components/menus/calibrate.gdml" g-id="calibrate" owo_device_id="${tracker_m.device_idx}" />
 		<VBoxContainer visible="${calibrate.calibrating_mode == 0}" >
-			<scene src="res://ui/components/menus/tracker_settings.gdml" g-id="settings" />
-			<SButton text="Recalibrate" g-id="recal_btn" />
+			<scene src="res://ui/components/menus/tracker_settings.gdml" g-id="settings" owo_device_id="${tracker_m.device_idx}" />
+			<HBoxContainer>
+				<SButton text="Full calibration" g-id="recal_btn" />
+				<SButton text="Down calibration" g-id="recal_btn_down" />
+			</HBoxContainer>
 		</VBoxContainer>
 	</VBoxContainer>
 	

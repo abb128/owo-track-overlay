@@ -1,4 +1,5 @@
 extends Node
+class_name Installer
 
 export var db_path: NodePath;
 onready var db: GDMLReactiveDatablock = get_node(db_path);
@@ -20,6 +21,9 @@ func get_runtime_exe_path(exe: String) -> String:
 	return win64_dir + "\\" + exe + ".exe";
 
 func is_driver_installed() -> bool:
+	if(OS.is_debug_build()):
+		return true;
+	
 	var output := [];
 	
 	var result := OS.execute(get_runtime_exe_path("vrpathreg"),
@@ -34,8 +38,16 @@ func is_driver_installed() -> bool:
 	
 	return (driver_path in str(output));
 
+func is_ascii(s: String) -> bool:
+	var ascii_v = s.to_ascii().get_string_from_ascii();
+	return ascii_v == s;
+
 func generic_vrpathreg(command: String) -> void:
 	var driver_path := get_driver_path();
+	
+	if(!is_ascii(driver_path)):
+		db.fatal_error = "Your path (" + driver_path + ") contains non-ASCII characters. Please move the folder to another directory.";
+		return;
 	
 	var dir := Directory.new();
 	if(dir.open(driver_path) != OK):
