@@ -5,7 +5,7 @@
 
 
 
-<VBoxContainer owo_device_id="@{0}" alive="@{false}" g-id="tsmain" >
+<VBoxContainer owo_device_id="@{0}" alive="@{false}" g-id="tsmain" last_joystick="-" >
 	<Node name="TrackerSettingsScript">
 		<script src="res://src/TrackerSettings.gd"
 		
@@ -49,7 +49,8 @@
 	/>
 	<GridContainer columns="@{2}">
 		<SLabel visible="${!simple_settings.advanced}" text="Use Device Space" /><CheckBox visible="${!simple_settings.advanced}" g-bind="${simple_settings.deviceSpace}" />
-		<SLabel text="Hip-oriented movement" /><CheckBox g-bind="${simple_settings.hipmove}" />
+		<SLabel text="${'Hip-oriented movement (' + tsmain.last_joystick + ')'}" />
+			<CheckBox g-bind="${simple_settings.hipmove}" />
 		<SLabel text="Advanced Settings" /><CheckBox g-bind="${simple_settings.advanced}" />
 	</GridContainer>
 	<GridContainer columns="@{2}" visible="${!simple_settings.advanced}">

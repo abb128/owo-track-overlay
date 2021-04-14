@@ -34,7 +34,7 @@ var port_no: int = -1;
 
 func update_connection_info() -> void:
 	if(port_no == -1):
-		print("no");
+		#print("no");
 		return;
 	
 	var info = "Port is " + str(port_no) + ". ";

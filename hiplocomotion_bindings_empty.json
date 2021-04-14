@@ -1,5 +1,5 @@
 {
-   "controller_type" : "vive_tracker",
-   "description" : "Empty bindings for non hip trackers",
+   "controller_type" : "generic",
+   "description" : "Empty bindings",
    "name" : "Empty binding"
 }

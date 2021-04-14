@@ -141,3 +141,4 @@ func _process(delta):
 	if(!get_parent().alive):
 		return;
 	owoIPC.tick_hipmove(device_id);
+	get_parent().last_joystick = owoIPC.get_hipmove_time_readable();

@@ -50,11 +50,11 @@
 			<VBoxContainer size_flags_horizontal="@{SIZE_EXPAND_FILL}">
 				<SLabel text="You should now see a tracker in front of you. While the timer is running, simply point the phone forward in the same orientation as your head (see picture)."/>
 				<SLabel text="You MUST point your phone forward. Do NOT point your phone up or down!!!!"/>
-				<SLabel text="You will have 5 seconds to make sure your phone is oriented correctly."/>
+				<SLabel text="You will have 3 seconds to make sure your phone is oriented correctly."/>
 				<HBoxContainer>
 					<STimer g-id="timer_1" />
 					<HBoxContainer visible="${!calib_main.timer_running}">
-						<SButton text="Start 5 second timer" g-id="start_timer_1" />
+						<SButton text="Start 3 second timer" g-id="start_timer_1" />
 					</HBoxContainer>
 				</HBoxContainer>
 			</VBoxContainer>
@@ -68,11 +68,11 @@
 			<VBoxContainer size_flags_horizontal="@{SIZE_EXPAND_FILL}">
 				<SLabel text="Please attach your phone to your waist as seen in the photo. While the timer is running, please stand straight in your natural forward position."/>
 				<SLabel text="Your phone must be attached to the WAIST, not the HIP. Your hip is mostly parallel to the ground, and it will not work well."/>
-				<SLabel text="You will have 5 seconds to make sure your phone is oriented correctly, and the calibration will be complete."/>
+				<SLabel text="You will have 1 second to make sure your phone is oriented correctly, and the calibration will be complete."/>
 				<HBoxContainer>
 					<STimer g-id="timer_2" />
 					<HBoxContainer visible="${!calib_main.timer_running}">
-						<SButton text="Start 5 second timer" g-id="start_timer_2" />
+						<SButton text="Start 1 second timer" g-id="start_timer_2" />
 					</HBoxContainer>
 				</HBoxContainer>
 			</VBoxContainer>

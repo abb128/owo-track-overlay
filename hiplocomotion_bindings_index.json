@@ -1,0 +1,22 @@
+{
+   "bindings" : {
+		"/actions/demo": {
+			"sources": [
+				{
+					"path": "/user/hand/left/input/thumbstick",
+					"mode": "joystick",
+					"inputs": {
+						"position": {
+							"output": "/actions/demo/in/analoginput"
+						}
+					}
+				}
+			]
+		}
+	},
+   "controller_type" : "knuckles",
+   "description" : "Bindings for the hip locomotion for a knuckles controller",
+   "name" : "Hip locomotion bindings for a knuckles controller"
+}
+
+

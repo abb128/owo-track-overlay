@@ -29,6 +29,8 @@ void OwoIPCInterface::_register_methods(){
 
 	reg_mtd(init_hipmove);
 	reg_mtd(tick_hipmove);
+
+	reg_mtd(get_last_joystick_time);
 }
 
 
@@ -231,26 +233,18 @@ void OwoIPCInterface::destroy_tracker(int idx){
 
 #define BUFSIZE 1024
 void OwoIPCInterface::init_hipmove(){
-	Godot::print("Initialiing..");
-
 	OS* os = OS::get_singleton();
 	auto file = os->get_executable_path().get_base_dir() + "\\hiplocomotion.json";
 
 	auto c_str = file.alloc_c_string();
-	Godot::print("Path: " + String(c_str));
-
 
 	vr::VRInput()->SetActionManifestPath(c_str);
 
-	Godot::print("action manifest");
-
 	vr::VRInput()->GetActionHandle("/actions/demo/in/AnalogInput", &m_actionAnalongInput);
-
-	Godot::print("analog handle");
 
 	vr::VRInput()->GetActionSetHandle("/actions/demo", &m_actionsetDemo);
 
-	Godot::print("exiting");
+	Godot::print("Initialized hipmove with " + file);
 }
 
 void OwoIPCInterface::tick_hipmove(int idx){
@@ -270,15 +264,17 @@ void OwoIPCInterface::tick_hipmove(int idx){
 		Godot::print("result Error " + String::num_int64(result));
 	}
 	bool active = analogData.bActive;
-	if (active) {
-		Godot::print("Action set active");
-	}
-	if (result == vr::VRInputError_None && active)
-	{
-		Godot::print("Sending joystick data " + Vector3(analogData.x, analogData.y, analogData.z));
+
+	if (result == vr::VRInputError_None && active) {
+		//Godot::print("Sending joystick data " + Vector3(analogData.x, analogData.y, analogData.z));
 		set_tracker_setting(idx, HIP_MOVE_VECTOR, Vector3(analogData.x, analogData.y, analogData.z));
+		last_joystick_send = time(NULL);
 	}
 	else {
+		//Godot::print("Tick but no data " + String::num_int64(result) + (active ? "true" : "false"));
 	}
+}
 
+int OwoIPCInterface::get_last_joystick_time() {
+	return time(NULL) - last_joystick_send;
 }

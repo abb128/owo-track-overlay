@@ -124,7 +124,7 @@ func get_tracker_setting_async(device_idx: int, setting: int):
 			
 		
 		return msg["data"]["value"];
-	printerr("After so many iterations nothing for " + str(setting));
+	#printerr("After so many iterations nothing for " + str(setting));
 
 func set_tracker_setting_async(device_idx: int, setting: int, val):
 	_ipc.set_tracker_setting(device_idx, setting, val);
@@ -229,7 +229,6 @@ var hipmove_initialized := false;
 func get_hipmove(device_idx: int):
 	return get_tracker_setting_async(device_idx, owoTrackerSettingType.HIP_MOVE);
 func set_hipmove(device_idx: int, to: bool) -> void:
-	_ipc.init_hipmove();
 	set_tracker_setting_async(device_idx, owoTrackerSettingType.HIP_MOVE, to);
 
 func tick_hipmove(device_idx: int):
@@ -237,3 +236,9 @@ func tick_hipmove(device_idx: int):
 		_ipc.init_hipmove();
 		hipmove_initialized = true;
 	return _ipc.tick_hipmove(device_idx);
+
+func get_hipmove_time_readable():
+	var n = _ipc.get_last_joystick_time()
+	if(n < 30):
+		return str(round(n)) + "s";
+	return ">30s";

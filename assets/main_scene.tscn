@@ -57,6 +57,10 @@ handle_input_locally = false
 debug_draw = 3
 render_target_update_mode = 3
 script = ExtResource( 1 )
+strVRDriver = null
+strVRDisplay = null
+base/widthInMeters = null
+base/textureBounds = null
 
 [node name="Control" type="PanelContainer" parent="ViewportContainer/owoTrack"]
 margin_left = 16.0

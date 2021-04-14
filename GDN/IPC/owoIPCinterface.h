@@ -30,6 +30,9 @@ class OwoIPCInterface: public Reference {
 		vr::VRActionHandle_t m_actionsetDemo = vr::k_ulInvalidActionHandle;
 		vr::VRActionHandle_t m_actionPose = vr::k_ulInvalidActionHandle;
 
+
+		time_t last_joystick_send = 0;
+
 	public:
 		void _init();
 		static void _register_methods();
@@ -49,4 +52,6 @@ class OwoIPCInterface: public Reference {
 		
 		void init_hipmove();
 		void tick_hipmove(int idx);
+
+		int get_last_joystick_time();
 };

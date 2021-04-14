@@ -16,7 +16,7 @@ func set_disabled(to: bool) -> void:
 	modulate = Color(1.0, 1.0, 1.0, col);
 	set_process(!to);
 	
-	txt.text = "5";
+	txt.text = "-";
 	
 	if(disabled && (copied_material != null)):
 		copied_material = null;

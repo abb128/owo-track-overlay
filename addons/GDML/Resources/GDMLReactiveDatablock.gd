@@ -11,7 +11,7 @@ export var __nodeDependencies: Dictionary;
 export var __reactive_props: Dictionary;
 
 func update_all() -> void:
-	print("Update all ", name);
+	#print("Update all ", name);
 	for key in __reactive_props.keys():
 		update_dependencies(key);
 
