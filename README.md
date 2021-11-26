@@ -1,6 +1,6 @@
 # owo-track-overlay
 
-Some of this repository may be messy or unclean but I've been cleaning it up a bit.
+Full builds of app, overlay and driver combined are available at https://mega.nz/folder/HRADQKLC#VKc-SFI6H2twCIQaBeE3EA
 
 ## Custom Godot build
 
